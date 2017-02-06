@@ -23,10 +23,12 @@
         <div class="profile-block social-links">
             <table>
                 <tr>
-                    <% var tooltipClass = theme.customize.social_link_tooltip === false ? '' : 'class=tooltip'; %>
+                    <% var tooltipClass = theme.customize.social_link_tooltip === false ? '' : 'class=tooltip';
+                    %>
                     <% for(var i in theme.customize.social_links) { %>
                     <td>
-                        <a href="<%- url_for(theme.customize.social_links[i]) %>" target="_blank" title="<%= i %>" <%= tooltipClass %>>
+                      <% var title = i == 'briefcase' ? 'Resume' : i %>
+                        <a href="<%- url_for(theme.customize.social_links[i]) %>" target="_blank" title="<%= title %>" <%= tooltipClass %>>
                             <i class="fa fa-<%= i %>"></i>
                         </a>
                     </td>
@@ -40,7 +42,7 @@
 
 <script type="text/javascript">
 (function (window) {
-	setTimeout(fetchGithubStarts, 800); // UX
+	setTimeout(useStaticStartCount, 800); // UX
 	function fetchGithubStarts() {
 		var url = 'https://api.github.com/users/PolarBearAndrew/repos';
 		$.ajax(url).done(function(repos) {
@@ -51,5 +53,9 @@
 			$('#github-followers').html(html);
 		});
 	}
+  function  useStaticStartCount() {
+    var html = '<i class="fa fa-star"></i> ' + 5 + '<span>Github</span>';
+    $('#github-followers').html(html);
+  }
 })(window);
 </script>
