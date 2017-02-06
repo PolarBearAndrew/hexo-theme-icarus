@@ -1,10 +1,66 @@
 <section class="layout-wrap">
     <div class="layout-title">
-        <span><%= page.title %></span>
+        <h1>分類檢索</h1>
     </div>
-    <div class="layout-wrap-inner list-categories">
-        <% if(site.categories.length) { %>
-            <%- list_categories(site.categories) %>
-        <% } %>
+
+    <div class="layout-wrap-inner categories-card">
+
+      <% function categoriesCard(name, attr){
+          return '#' + name + '@';
+        }
+      %>
+      <% var categoriesDataStr = list_categories(site.categories, { style: '', separator: ',', transform: categoriesCard});
+        var data = [];
+        var categoriesDataArr = categoriesDataStr.split(',');
+        for( var i=0; i<categoriesDataArr.length; i++) {
+          var tmp =  categoriesDataArr[i].split('@');
+          data.push({
+            name : tmp[0].split('#')[1],
+            count : tmp[1].replace(/<span class="category-count">/, '').replace(/<\/span><\/a>/, '')
+          });
+        }
+      %>
+
+      <!-- new categories -->
+      <% for(var i in data) { %>
+      	<div class="inner categories-inner">
+            <div class="base-info categories-block">
+                <img class="avatar" src="/images/categories/<%=data[i].name %>.jpg" />
+                <h2 class="name">
+                  <%= data[i].name %>
+                  <a class="fa fa-file-o" style="color:black; font-size:8px">  <%= data[i].count %></a>
+                </h2>
+                <!-- <p class="desc">簡述簡述簡述簡述簡述簡述簡述簡述簡述簡述簡述簡述簡述簡述簡述簡述簡述簡述簡述簡述簡述簡述</p> -->
+                <a class="goto-category" target="_blank" href="/categoriesl/<%=data[i].name%>/">
+                  文章列表     <i class="fa fa-arrow-right" aria-hidden="true"></i>
+                </a>
+            </div>
+            <!-- <div class="article-info categories-block">
+                <div class="article-info-block">
+                    <i class="fa fa-file-o"></i> 10
+                </div>
+                <div id="github-followers" class="article-info-block">
+                    <i class="fa fa-spinner fa-pulse" aria-hidden="true"></i>
+                    <span>Github</span>
+                </div>
+            </div>
+            <% if(theme.customize.social_links) { %>
+            <div class="categories-block social-links">
+                <table>
+                    <tr>
+                        <% var tooltipClass = theme.customize.social_link_tooltip === false ? '' : 'class=tooltip'; %>
+                        <% for(var i in theme.customize.social_links) { %>
+                        <td>
+                            <a href="<%- url_for(theme.customize.social_links[i]) %>" target="_blank" title="<%= i %>" <%= tooltipClass %>>
+                                <i class="fa fa-<%= i %>"></i>
+                            </a>
+                        </td>
+                        <% } %>
+                    </tr>
+                </table>
+            </div> -->
+            <% } %>
+        </div>
+      <% } %>
     </div>
 </section>
