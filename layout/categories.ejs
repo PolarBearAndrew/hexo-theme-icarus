@@ -31,7 +31,7 @@
                   <a class="fa fa-file-o" style="color:black; font-size:8px">  <%= data[i].count %></a>
                 </h2>
                 <!-- <p class="desc">簡述簡述簡述簡述簡述簡述簡述簡述簡述簡述簡述簡述簡述簡述簡述簡述簡述簡述簡述簡述簡述簡述</p> -->
-                <a class="goto-category" target="_blank" href="/categoriesl/<%=data[i].name%>/">
+                <a class="goto-category" target="_blank" href="/categoriesl/<%=data[i].name.replace(/./, '-')%>/">
                   文章列表     <i class="fa fa-arrow-right" aria-hidden="true"></i>
                 </a>
             </div>
