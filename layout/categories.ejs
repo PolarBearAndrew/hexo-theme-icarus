@@ -31,10 +31,34 @@
                   <a class="fa fa-file-o" style="color:black; font-size:8px">  <%= data[i].count %></a>
                 </h2>
                 <!-- <p class="desc">簡述簡述簡述簡述簡述簡述簡述簡述簡述簡述簡述簡述簡述簡述簡述簡述簡述簡述簡述簡述簡述簡述</p> -->
-                <a class="goto-category" target="_blank" href="/categoriesl/<%=data[i].name.replace(/./, '-')%>/">
+                <a class="goto-category" target="_blank" href="/categoriesl/<%=data[i].name.replace(/.js/, '-js')%>/">
                   文章列表     <i class="fa fa-arrow-right" aria-hidden="true"></i>
                 </a>
             </div>
+            <!-- <div class="article-info categories-block">
+               <div class="article-info-block">
+                   <i class="fa fa-file-o"></i> 10
+               </div>
+               <div id="github-followers" class="article-info-block">
+                   <i class="fa fa-spinner fa-pulse" aria-hidden="true"></i>
+                   <span>Github</span>
+               </div>
+           </div>
+           <% if(theme.customize.social_links) { %>
+           <div class="categories-block social-links">
+               <table>
+                   <tr>
+                       <% var tooltipClass = theme.customize.social_link_tooltip === false ? '' : 'class=tooltip'; %>
+                       <% for(var i in theme.customize.social_links) { %>
+                       <td>
+                           <a href="<%- url_for(theme.customize.social_links[i]) %>" target="_blank" title="<%= i %>" <%= tooltipClass %>>
+                               <i class="fa fa-<%= i %>"></i>
+                           </a>
+                       </td>
+                       <% } %>
+                   </tr>
+               </table>
+           </div> -->
             <% } %>
         </div>
       <% } %>
