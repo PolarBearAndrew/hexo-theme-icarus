@@ -31,7 +31,7 @@
                     <% for(var i in theme.customize.social_links) { %>
                     <td>
                       <% var title = i == 'briefcase' ? 'Resume' : i %>
-                        <a href="<%- url_for(theme.customize.social_links[i]) %>" target="_blank" title="<%= title %>" <%= tooltipClass %>>
+                        <a href="<%- url_for(theme.customize.social_links[i]) %>" target="_blank" title="<%= title %>" <%= tooltipClass %> rel="external nofollow">
                             <i class="fa fa-<%= i %>"></i>
                         </a>
                     </td>
@@ -61,7 +61,7 @@
     html = html.substring(html.indexOf('<img'), html.length)
     html = html.replace(/<img src="http:\/\/toolkit.url.com.tw\/counter\/style\/style001\//g, '');
     html = html.replace(/.png">/g, '');
-    var totalVisitors = parseInt(html) + 100 || 9999;
+    var totalVisitors = parseInt(html) || "??";
     render('fa-users', '訪客數', totalVisitors);
   }
   function render(icon, str, num) {
